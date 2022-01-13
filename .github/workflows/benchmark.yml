@@ -1,0 +1,31 @@
+name: Benchmark_Speedy
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  benchmark:
+    name: Run JavaScript benchmark example
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Hyperfine
+        run: npm install -g hyperfine
+
+      - name: Git Download
+        run: git clone git@github.com:speedy-js/benchmarks.git && cd benchmarks && git checkout fix/npm8-error && pnpm install && cd -
+
+      - name: Run Hyperfine
+        run: cd benchmark && npm run bench | tee output.txt  

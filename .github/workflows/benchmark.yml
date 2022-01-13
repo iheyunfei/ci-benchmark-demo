@@ -26,7 +26,7 @@ jobs:
         run: npm install -g yarn && yarn
       
       - name: Exec GitHub Api
-        run: ll -ah && npm run test
+        run: ls && npm run test
 
       - name: Install Hyperfine
         run: npm install -g hyperfine

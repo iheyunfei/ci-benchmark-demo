@@ -24,13 +24,9 @@ async function run() {
       issue_number: pull_request_number,
       body: message
     } as any)
-
   } catch (error: any) {
     core.setFailed(error.message);
   }
 }
 
-// run();
-
-console.log(github)
-console.log(core)
+run();

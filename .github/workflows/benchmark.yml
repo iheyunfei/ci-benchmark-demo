@@ -20,6 +20,9 @@ jobs:
       
       - name: Install pnpm
         run: npm install -g pnpm
+      
+      - name: Install Yarn
+        run: npm install -g yarn && yarn
 
       - name: Install Hyperfine
         run: npm install -g hyperfine

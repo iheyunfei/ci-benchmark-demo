@@ -1,4 +1,6 @@
 name: Benchmark_Speedy
+env:
+  AUTH_TOKEN: ${{ secrets.PR_STATS_COMMENT_TOKEN }}
 on:
   pull_request:
   push:
@@ -9,7 +11,7 @@ permissions:
   contents: write
   deployments: write
 
-jobs:
+jobs: 
   benchmark:
     name: Run JavaScript benchmark example
     runs-on: ubuntu-latest

@@ -1,5 +1,6 @@
 name: Benchmark_Speedy
 on:
+  pull_request:
   push:
     branches:
       - main

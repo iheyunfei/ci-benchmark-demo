@@ -1,6 +1,4 @@
 name: Benchmark_Speedy
-env:
-  AUTH_TOKEN: ${{ secrets.PR_STATS_COMMENT_TOKEN }}
 on:
   pull_request:
   push:

@@ -28,4 +28,4 @@ jobs:
         run: git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/speedy-js/benchmarks.git && cd benchmarks && git checkout fix/npm8-error && pnpm install && cd -
 
       - name: Run Hyperfine
-        run: cd benchmark && npm run bench | tee output.txt  
+        run:  cd benchmarks && npm run bench | tee output.txt  

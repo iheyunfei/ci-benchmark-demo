@@ -2,7 +2,7 @@ name: Benchmark_Speedy
 on:
   push:
     branches:
-      - master
+      - main
 
 permissions:
   contents: write

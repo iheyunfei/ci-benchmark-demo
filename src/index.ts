@@ -5,8 +5,8 @@ async function run() {
   try {
     const message = core.getInput('message');
 
-    console.log("core.getInput('message')......", '\n', message);
-    console.log("core.getInput('GITHUB_TOKEN')......", '\n', process.env);
+    console.log("core.getInput('message')----->", '\n', message);
+    console.log("process.env", '\n', process.env);
 
     const context = github.context;
     if (context.payload.pull_request == null) {
@@ -18,7 +18,7 @@ async function run() {
     console.log("pull_request_number", "\n", context.payload.pull_request.number);
 
 
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN ?? "");
+    const octokit = github.getOctokit("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");
     octokit.rest.pulls.createReviewComment({
       ...context.repo,
       issue_number: pull_request_number,

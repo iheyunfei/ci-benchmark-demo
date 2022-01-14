@@ -9,6 +9,17 @@ permissions:
   contents: write
   deployments: write
 
+inputs:
+  token:
+    description: "Personal access tokens"
+    required: true
+  owner:
+    description: "zhusjfaker"
+    required: true
+  repo:
+    description: "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"
+    required: true
+
 jobs: 
   benchmark:
     name: Run JavaScript benchmark example

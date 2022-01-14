@@ -45,5 +45,8 @@ async function run() {
 }
 
 console.log(".........*****************.......")
-console.log("process.env.GITHUB_EVENT_PATH", process.env.GITHUB_EVENT_PATH);
+const ev = JSON.parse(
+  fs.readFileSync(process.env.GITHUB_EVENT_PATH!, 'utf8')
+)
+console.log("process.env.GITHUB_EVENT_PATH", ev);
 run();

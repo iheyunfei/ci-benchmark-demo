@@ -3,27 +3,22 @@ import * as github from "@actions/github";
 
 async function run() {
   try {
-    const message = core.getInput('message');
+    const token = core.getInput("token");
+    const owner = core.getInput("owner");
+    const repo = core.getInput("repo");
 
-    console.log("core.getInput('message')----->", '\n', message);
-    console.log("process.env", '\n', process.env);
-
-    const context = github.context;
-    if (context.payload.pull_request == null) {
-      core.setFailed('No pull request found.');
-      return;
-    }
-    console.log("context->", "\n", context);
-    const pull_request_number = context.payload.pull_request.number;
-    console.log("pull_request_number", "\n", context.payload.pull_request.number);
-
-
-    const octokit = github.getOctokit("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");
-    octokit.rest.pulls.createReviewComment({
-      ...context.repo,
-      issue_number: pull_request_number,
-      body: message
-    } as any)
+    console.log("token----->", '\n', token);
+    console.log("owner----->", '\n', owner);
+    console.log("repo----->", '\n', repo);
+    const octokit = github.getOctokit(token);
+    const res = await octokit.rest.pulls.list();
+    console.log(res);
+    console.log(".....")
+    // octokit.rest.pulls.createReviewComment({
+    //   ...context.repo,
+    //   issue_number: pull_request_number,
+    //   body: message
+    // } as any)
   } catch (error: any) {
     core.setFailed(error.message);
   }

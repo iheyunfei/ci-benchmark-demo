@@ -27,7 +27,7 @@ async function post_comment(token: string, body: string, owner: string, repo: st
 
 async function run() {
   try {
-    const token = "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"
+    const token = process.env.AUTH_TOKEN
     const owner = "zhusjfaker";
     const repo = "ci-benchmark-demo";
     const benchmark_file = path.resolve(process.cwd(), "output.txt");
@@ -35,7 +35,7 @@ async function run() {
       const content = fs.readFileSync(benchmark_file, { encoding: "utf8" });
       const pull_number = get_number();
       if (pull_number) {
-        post_comment(token, content, owner, repo, pull_number);
+        post_comment(token!, content, owner, repo, pull_number);
       }
     }
   } catch (error: any) {

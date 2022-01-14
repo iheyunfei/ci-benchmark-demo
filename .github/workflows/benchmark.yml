@@ -38,5 +38,7 @@ jobs:
 
       - name: Exec GitHub Api
         run: ls && npm run test
+        env:
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
       

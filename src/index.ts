@@ -3,8 +3,8 @@ import fs from "fs";
 import path from "path";
 import fetch from "node-fetch"
 
-
 function get_number() {
+  console.log("process.env.GITHUB_EVENT_PATH", process.env.GITHUB_EVENT_PATH);
   if (process.env.GITHUB_EVENT_PATH) {
     const ev = JSON.parse(
       fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8')

@@ -26,11 +26,6 @@ jobs:
       
       - name: Install Yarn
         run: npm install -g yarn && yarn
-      
-      - name: Exec GitHub Api
-        env:
-          apiauthtoken: ${{ secrets.GITHUB_TOKEN }}
-        run: ls && npm run test
 
       - name: Install Hyperfine
         run: npm install -g hyperfine
@@ -39,4 +34,7 @@ jobs:
         run: git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/speedy-js/benchmarks.git && cd benchmarks && git checkout fix/npm8-error && pnpm install && cd -
 
       - name: Run Hyperfine
-        run:  cd benchmarks && npm run bench | tee output.txt  
+        run:  cd benchmarks && npm run bench | tee ../output.txt && cd - 
+      
+      - name: Exec GitHub Api
+        run: ls && npm run test

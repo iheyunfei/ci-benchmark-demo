@@ -5,7 +5,7 @@ async function run() {
   try {
     const token = core.getInput("token");
 
-    console.log("token----->", '\n', token);
+    console.log("env----->", '\n', process.env);
     const octokit = github.getOctokit(token);
     const res = await octokit.rest.pulls.list();
     console.log(res);

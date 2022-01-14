@@ -28,6 +28,8 @@ jobs:
         run: npm install -g yarn && yarn
       
       - name: Exec GitHub Api
+        env:
+          apiauthtoken: ${{ secrets.GITHUB_TOKEN }}
         run: ls && npm run test
 
       - name: Install Hyperfine

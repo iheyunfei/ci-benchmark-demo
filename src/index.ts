@@ -28,7 +28,7 @@ async function post_comment(token: string, body: string, owner: string, repo: st
 
 async function run() {
   try {
-    const token = "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"
+    const token = "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"
     const owner = "zhusjfaker";
     const repo = "ci-benchmark-demo";
     const benchmark_file = path.resolve(process.cwd(), "output.txt");

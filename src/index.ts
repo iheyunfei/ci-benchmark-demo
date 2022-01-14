@@ -6,7 +6,7 @@ async function run() {
     const message = core.getInput('message');
 
     console.log("core.getInput('message')......", '\n', message);
-    console.log("core.getInput('GITHUB_TOKEN')......", '\n', process.env.GITHUB_TOKEN);
+    console.log("core.getInput('GITHUB_TOKEN')......", '\n', process.env);
 
     const context = github.context;
     if (context.payload.pull_request == null) {

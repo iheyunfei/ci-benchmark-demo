@@ -3,10 +3,7 @@ import * as github from "@actions/github";
 
 async function run() {
   try {
-    const token = core.getInput("token");
-
-    console.log("env----->", '\n', process.env);
-    const octokit = github.getOctokit(token);
+    const octokit = github.getOctokit(process.env.apiauthtoken ?? "");
     const res = await octokit.rest.pulls.list();
     console.log(res);
     console.log(".....")

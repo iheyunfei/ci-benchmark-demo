@@ -8,18 +8,6 @@ on:
 permissions:
   contents: write
   deployments: write
-
-inputs:
-  token:
-    description: "Personal access tokens"
-    required: true
-  owner:
-    description: "zhusjfaker"
-    required: true
-  repo:
-    description: "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"
-    required: true
-
 jobs: 
   benchmark:
     name: Run JavaScript benchmark example
@@ -41,6 +29,10 @@ jobs:
       
       - name: Exec GitHub Api
         run: ls && npm run test
+        with:
+          repository: ci-benchmark-demo
+          ref: feat/test-api
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Hyperfine
         run: npm install -g hyperfine

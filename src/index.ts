@@ -4,12 +4,8 @@ import * as github from "@actions/github";
 async function run() {
   try {
     const token = core.getInput("token");
-    const owner = core.getInput("owner");
-    const repo = core.getInput("repo");
 
     console.log("token----->", '\n', token);
-    console.log("owner----->", '\n', owner);
-    console.log("repo----->", '\n', repo);
     const octokit = github.getOctokit(token);
     const res = await octokit.rest.pulls.list();
     console.log(res);

@@ -29,10 +29,6 @@ jobs:
       
       - name: Exec GitHub Api
         run: ls && npm run test
-        with:
-          repository: ci-benchmark-demo
-          ref: feat/test-api
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Hyperfine
         run: npm install -g hyperfine

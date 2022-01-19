@@ -28,7 +28,7 @@ jobs:
         run: git clone https://github.com/speedy-js/benchmarks && cd benchmarks && git checkout dev && pnpm install && cd -
 
       - name: Run Benchmark
-        run:  cd benchmarks && pnpm bench
+        run:  cd benchmarks && pnpm bench && cd -
 
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1

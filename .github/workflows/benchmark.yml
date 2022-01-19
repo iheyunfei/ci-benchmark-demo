@@ -1,8 +1,6 @@
 name: Benchmark_Speedy
 on:
   push:
-    branches:
-      - main
 
 permissions:
   contents: write

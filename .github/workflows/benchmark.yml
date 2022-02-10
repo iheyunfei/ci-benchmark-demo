@@ -1,8 +1,6 @@
 name: Benchmark_Speedy
 on:
   push:
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -21,14 +19,29 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       
-      - name: Install Yarn
-        run: npm install -g yarn && yarn
-
       - name: Install Hyperfine
         run: npm install -g hyperfine
 
-      - name: Git Download
-        run: git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/speedy-js/benchmarks.git && cd benchmarks && git checkout fix/npm8-error && pnpm install && cd -
+      # - name: Git Download
+      #   run: git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/speedy-js/benchmarks.git && cd benchmarks && git checkout fix/npm8-error && pnpm install && cd -
+      - name: Clone benchmarks
+        run: git clone https://github.com/speedy-js/benchmarks && cd benchmarks && git checkout dev && pnpm install && cd -
 
-      - name: Run Hyperfine
-        run:  cd benchmarks && npm run bench | tee output.txt  
+      - name: Run Benchmark
+        run:  cd benchmarks && pnpm bench && cd -
+
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          # What benchmark tool the output.txt came from
+          tool: 'customSmallerIsBetter'
+          # Where the output from the benchmark tool is stored
+          output-file-path: ./benchmarks/benchmark-runner/dist/bechmark-action-otuput.txt
+          # Where the previous data file is stored
+          # external-data-json-path: ./cache/benchmark-data.json
+          # Workflow will fail when an alert happens
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alert-threshold: '200%'
+          comment-on-alert: true
+          fail-on-alert: true
+      # Upload the updated cache file for the next job by actions/cache
